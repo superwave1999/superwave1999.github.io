@@ -94,6 +94,12 @@ paginate: 14
 # The base URL of your site
 baseurl: ""
 
+header_pages:
+  - index.md
+  - tags.md
+  - archives.md
+  - https://www.iromera.com
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
