@@ -1,9 +1,9 @@
 #  The contact options.
 
-#- type: website
-#  icon: "fas fa-circle-user"
-#  url: "https://www.iromera.com"
-#  noblank: true
+- type: website
+  icon: "fas fa-circle-user"
+  url: "https://www.iromera.com"
+  noblank: true
 
 #- type: github
 #  icon: "fab fa-github"
