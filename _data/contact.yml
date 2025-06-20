@@ -5,8 +5,8 @@
   url: "https://www.iromera.com"
   noblank: true
 
-#- type: github
-#  icon: "fab fa-github"
+- type: github
+  icon: "fab fa-github"
 
 #- type: rss
 #  icon: "fas fa-rss"
