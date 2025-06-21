@@ -11,13 +11,13 @@ Hello! This guide will guide you through an installation of Ubuntu Server 24.04.
 
 > I will update this guide if I find any further caveats. The main issue I can imagine popping up is Ubuntu assuming we are running the grub2 bootloader instead of rEFInd and zfsbootmenu.
 
-The target machine specs and the reasoning behind doing this (and for choosing ZFS over BTRFS) are detailed here.
+The target machine specs and the reasoning behind doing this (and for choosing ZFS over BTRFS) are detailed [here](/posts/setup-tour).
 
 Before following this guide, I suggest you read through [the original](https://docs.zfsbootmenu.org/en/v2.3.x/guides/ubuntu/noble-uefi.html). The only difference is that in this case, we will be installing this on a server machine with no desktop and on a blank SSD.
 
 I will copy-paste most of the original commands, but with some changes (prefixed with ⭐) and comments (prefixed with 💬).
 
-This process will take around 1 hour for those relatively technical-minded.
+This process will take around 1 hour for those relatively technically-minded.
 
 You should have an Ubuntu USB flashed using balena, rufus, or any other trustworthy tool plugged into the back of the motherboard.
 
@@ -298,7 +298,7 @@ After rebooting, you can only log in via your non-root user, and can then elevat
 One of the steps the ubuntu installer does is set up the internet for you, but we didn't use the ubuntu installer.
 
 You will need to sit at the server for a bit until we get internet working.
-Note, IP addresses may change in your case. This configuration was done via ethernet.
+Note, IP addresses or interface names may change in your case. This configuration was done via ethernet.
 
 #### 1. Assign a known IP address (temporary)
 ```bash
@@ -315,8 +315,11 @@ network:
   version: 2
   renderer: networkd
   ethernets:
-    enp2s0:
+    all:
+      match:
+        name: "en*"
       dhcp4: true
+      dhcp6: true
 ```
 
 Save, set permissions, apply changes:
