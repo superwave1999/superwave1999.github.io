@@ -32,6 +32,8 @@ Years ago, in 2017, I began my journey to degoogle my life. I bought an MSI Cubi
 
 At the end of 2021 I decided to invest in storage, so I got 4x8TB Western Digital drives. The mini-PC obviously doesn't allow much expansion, so the issue of connectivity was solved by a QNAP TR-004 drive enclosure, which I left in JBOD mode and let RAID be software-controlled by ZFS.
 
+![Old](/old.jpg)
+
 I was fully aware that having the two pillars of the setup connected via a single wiggly cable was finicky, and that these pillars each had their own power supply was even more finicky.
 
 Surprisingly enough, this setup lasted me all those years *until now*.
@@ -236,4 +238,6 @@ Below is a diagram of my containers and the connections between them. No planned
 
 Happy with the result. A semi-professional setup at a good price. I'll be posting my journey using this new system to this page.
 
-TODO: Add pic
+![New (without case)](/new-no-case.jpg)
+
+TODO: Add pic with case.
