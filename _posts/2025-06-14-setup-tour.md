@@ -1,6 +1,6 @@
 ---
 title: "Building a New Home Server for all my Data"
-date: 2025-06-19
+date: 2025-06-14
 tags:
   - self-hosting
   - zfs
