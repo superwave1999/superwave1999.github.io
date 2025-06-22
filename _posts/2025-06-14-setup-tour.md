@@ -37,6 +37,7 @@ I was fully aware that having the two pillars of the setup connected via a singl
 Surprisingly enough, this setup lasted me all those years *until now*.
 
 The only two minor issues I've had with the system are:
+
 - A random unexplained offlining of a drive in the summer of '24. I checked the drive was physically OK, and the ZFS pool was rebuilt successfully.
 - Suddenly, the mini-PC stopped fully powering-off when I pressed the button, or sent a poweroff command. I didn't upgrade the system, BIOS, firmware or changed any setting.
 
@@ -77,15 +78,18 @@ But for my needs, it's perfect and is worth the price of __137€__.
 Nothing flashy needed. Anything modern that performs on par or better than an i3-7100 (while using less power) will get a pass from me. Thankfully the Intel N100 exists. This CPU is very efficient, rated at 6W.
 
 Browsing online for motherboards, I noticed that this CPU comes soldered onto two available motherboards:
+
 - ASRock N100DC‑ITX (160€)
-- **Asus PRIME N100I‑D** (113€, spoiler: my pick)
+- __Asus PRIME N100I‑D__ (113€, spoiler: my pick)
 
 ### Power
+
 Coming from a system that has barrel-jacks and external laptop-charger-style bricks, I'm looking for something more standard. The ASRock uses a barrel-jack, and the Asus a standard 24-pin ATX connector.
 
 1 point for the Asus.
 
 ### Expandability & I/O
+
 The ASRock has more I/O out-of-the-box, and offers a single DDR4 DIMM RAM slot. Sadly, the Asus uses a laptop-style SODIMM. Additionally the ASRock has two SATA connectors on-board, but the Asus offers one.
 
 Honestly, the RAM slot isn't a big issue, and paying notably more for an additional on-board SATA when I'm going to use a dedicated PCI-E to SATA expansion card anyway (for all the drives) makes no sense.
@@ -108,15 +112,15 @@ As stated, I have a budget and the Asus board fits right into the budget. Paying
 
 ## RAM
 
-I'm going to re-use the not-so-old **16GB DDR4 2133MHz SODIMM Corsair Value Select** RAM from my old system. No, It isn't ECC RAM. The possibility of bit-flips isn't zero, but it's very minor ahd I haven't seen issues with this yet. I'll take my chances.
+I'm going to re-use the not-so-old __16GB DDR4 2133MHz SODIMM Corsair Value Select__ RAM from my old system. No, It isn't ECC RAM. The possibility of bit-flips isn't zero, but it's very minor ahd I haven't seen issues with this yet. I'll take my chances.
 
 ## OS drive
 
-I have a **Samsung 970 EVO** (M.2 PCI-E) lying around in good condition and treated well, so I'm going to promote it to be my OS drive.
+I have a __Samsung 970 EVO__ (M.2 PCI-E) lying around in good condition and treated well, so I'm going to promote it to be my OS drive.
 
 ## Storage drives
 
-I'm bringing over my existing four **8TB WD Red Plus** drives from my old system. They should have a couple of years left in them.
+I'm bringing over my existing four __8TB WD Red Plus__ drives from my old system. They should have a couple of years left in them.
 
 I'm considering adding a fifth drive for more redundancy, but that isn't in the scope of this article.
 
@@ -125,6 +129,7 @@ I'm considering adding a fifth drive for more redundancy, but that isn't in the 
 The expansion slot on my board is a PCI-E 3.0 x1.
 
 To power these 4 drives, I searched online for the opinions of the community. There's a split between multiple camps:
+
 - HBA's are still good and reliable.
 - HBA's are reliable, but you're buying older second-hand tech that may be unsupported by the manufacturer.
 - Use a PCI-E to SATA card of a dubious manuracturer (this guy did successfully for now).
@@ -135,7 +140,7 @@ On the positive side, it's still better than running the drives through USB.
 
 My drives max out at around 200MB/s sequential. PCI-E 3.0 x1 maxes out at around 970 MB/s. Multiply. I'm well under the limit imposed by PCI-E.
 
-So, I've settled for an **ASM1064-based expansion card** ([this one](https://amzn.eu/d/3y4jf53)) for all my drives.
+So, I've settled for an __ASM1064-based expansion card__ ([this one](https://amzn.eu/d/3y4jf53)) for all my drives.
 
 About the potential fifth drive, I'll plug it into the board. For those sysadmins reading this and cringing at using two different controllers for the same RAID, I must remind you that I'm not Google, and I'm doing the best I can with the given budget and resources ;)
 
@@ -154,22 +159,21 @@ Given the above parts, these are the full-load over-estimated consumption calcul
 | WD80EFBX HDD        | 8.8W               |
 | Samsung 970 Evo SSD | 5W                 |
 | ASM1064 PCI-E       | 2W                 |
-| **TOTAL**           | **70.2W**          |
-
+| __TOTAL__           | __70.2W__          |
 
 The estimates are a combination of:
+
 - Manufacturer specs.
 - Independent review data (AnandTech, Tom's Hardware).
 - Real‑user measured results from Reddit or Level1Techs.
 
 Given that I wont exceed 100W, and probably sit around 20-30W most of the time, I'm in the search for a low-power power supply from a reputable brand that has the required SFX form factor for my case.
 
-Enter the **be quiet! SFX Power 3 300W** at __63.99€__.
-
+Enter the __be quiet! SFX Power 3 300W__ at __63.99€__.
 
 ## Conclusion
 
-New rig, close enough to the upgrade budget (**360€**) and with a smaller footprint and power consumption than the old version. Gone are the days of split power between the system and the drives and USB cables to link them both up.
+New rig, close enough to the upgrade budget (__360€__) and with a smaller footprint and power consumption than the old version. Gone are the days of split power between the system and the drives and USB cables to link them both up.
 
 # Software stack
 
@@ -207,16 +211,16 @@ Without further ado, here is a reviewed table generated by ChatGPT:
 
 | Feature              | ZFS                                | BTRFS                                            |
 | -------------------- | ---------------------------------- | ------------------------------------------------ |
-| **Stability**        | Very stable, enterprise‑ready      | Stable for most use, RAID5/6 still experimental  |
-| **Licensing**        | CDDL (out‑of‑tree)                 | GPL (in‑kernel)                                  |
-| **RAM Usage**        | High (8GB+ recommended)            | Low‑to‑moderate                                  |
-| **Best Use Case**    | Large pools, heavy I/O             | General use, desktop/laptop                      |
-| **RAID Features**    | RAID‑Z, hot spares, scrubbing      | RAID0/1/10 okay, RAID5/6 risky                   |
-| **Snapshot/Clone**   | Excellent, highly efficient        | Good, supported natively                         |
-| **Self‑Healing**     | Yes (end‑to‑end checksums)         | Limited                                          |
-| **Flexibility**      | Very robust, enterprise‑focused    | More flexible for common Linux setups            |
-| **Ease of Recovery** | Complex                            | Simpler tooling available                        |
-| **Best When**        | You value long‑term data integrity | You want seamless kernel support and general use |
+| __Stability__        | Very stable, enterprise‑ready      | Stable for most use, RAID5/6 still experimental  |
+| __Licensing__        | CDDL (out‑of‑tree)                 | GPL (in‑kernel)                                  |
+| __RAM Usage__        | High (8GB+ recommended)            | Low‑to‑moderate                                  |
+| __Best Use Case__    | Large pools, heavy I/O             | General use, desktop/laptop                      |
+| __RAID Features__    | RAID‑Z, hot spares, scrubbing      | RAID0/1/10 okay, RAID5/6 risky                   |
+| __Snapshot/Clone__   | Excellent, highly efficient        | Good, supported natively                         |
+| __Self‑Healing__     | Yes (end‑to‑end checksums)         | Limited                                          |
+| __Flexibility__      | Very robust, enterprise‑focused    | More flexible for common Linux setups            |
+| __Ease of Recovery__ | Complex                            | Simpler tooling available                        |
+| __Best When__        | You value long‑term data integrity | You want seamless kernel support and general use |
 
 I picked ZFS mainly due to it's maturity, stability, integrity checks, being supported by Canonical.
 

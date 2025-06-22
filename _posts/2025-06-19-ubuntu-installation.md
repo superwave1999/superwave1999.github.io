@@ -48,9 +48,11 @@ The original guide assumes you know the inner workings of the ubuntu installer a
 From the ubuntu server installer, you can navigate using the keyboard to the "Help" dropdown at the top right of the screen. From here you can use the command-line sitting at the machine, or SSH into it. I did the latter for convenience to copypaste the commands of the guide.
 
 ### Open a root shell
+
 💬 Skipping this original section, you should be as root user via SSH.
 
 ### Prepare the current command-line session
+
 Load ubuntu release info and codenames into the session. We will also install some additional utilities into the live environment.
 
 ```bash
@@ -62,11 +64,13 @@ zgenhostid -f 0x00bab10c
 ```
 
 ### ⭐ 💬 Detect your disk partitions
+
 💬 Arguably the most important part of the guide. You must know which type of boot drive you have, but since some M.2 drives use a SATA interface and not PCI-E, we will check.
 
 ```bash
 lsblk
 ```
+
 In my case with the installer on USB and with a PCI-E M.2 SSD, the output looks like this:
 
 ```bash
@@ -80,7 +84,9 @@ nvme0n1 259:0    0 512.1G  0 disk
 ├─nvme0n1p2 259:2 511.6G  0 part
 
 ```
+
 For a traditional SATA SSD, HDD, or SATA M.2, it will look like the following:
+
 ```bash
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 loop0    7:0    0   2.3G  1 loop /rofs
@@ -96,6 +102,7 @@ sdb      8:16   0 512.1G  0 disk
 The main things you should look out for are the /cdrom mountpoint (this is the live USB). The other non-loop drive (assuming you only have 1 permanent drive in your system) should be the target drive. To double-confirm, you can also compare the sizes of the drives for a relative match.
 
 ### Wipe and Configure your disk partitions
+
 💬 BOOT is where the rEFInd and zfsbootmenu go. The POOL is the OS.
 
 ```bash
@@ -109,6 +116,7 @@ export POOL_DEVICE="${POOL_DISK}p${POOL_PART}"
 ```
 
 Wipe and partition the drives:
+
 ```bash
 zpool labelclear -f "$POOL_DISK"
 wipefs -a "$POOL_DISK"
@@ -120,6 +128,7 @@ sgdisk -n "${POOL_PART}:0:-10m" -t "${POOL_PART}:bf00" "$POOL_DISK"
 ```
 
 ### ZFS pool creation + filesystems
+
 💬 I disabled compression in my case.
 
 ```bash
@@ -139,6 +148,7 @@ zpool set bootfs=zroot/ROOT/${ID} zroot
 ```
 
 ### Export, then re-import with a temporary mountpoint of `/mnt` & update device symlinks
+
 ```bash
 zpool export zroot
 zpool import -N -R /mnt zroot
@@ -148,6 +158,7 @@ udevadm trigger
 ```
 
 ### Install Ubuntu
+
 💬 This is the longest part of this process, it may appear stuck since there is no progress indicator. To clarify, we are installing Ubuntu to our ZFS'ed system drive mounted to /mnt in the previous step.
 
 ```bash
@@ -155,12 +166,14 @@ debootstrap noble /mnt
 ```
 
 ### Copy files
+
 ```bash
 cp /etc/hostid /mnt/etc
 cp /etc/resolv.conf /mnt/etc
 ```
 
 ### Chroot into the new OS
+
 💬 What is chroot you ask? Simple! So far, any changes that we make to the system were changes made to the live environment, that lives in RAM, and disappears on reboot. With the following steps, we are applying changes to the recently installed system on the SSD. All without rebooting. Ah... the wonders of Linux.
 
 ```bash
@@ -172,19 +185,24 @@ chroot /mnt /bin/bash
 ```
 
 ### Postinstall steps
+
 #### Set hostname
+
 💬 Replace YOURHOSTNAME with something like server, homelab... whatever you want.
+
 ```bash
 echo 'YOURHOSTNAME' > /etc/hostname
 echo -e '127.0.1.1\tYOURHOSTNAME' >> /etc/hosts
 ```
 
 #### Set a root password
+
 ```bash
 passwd
 ```
 
 #### Configure apt
+
 ```bash
 cat <<EOF > /etc/apt/sources.list
 # Uncomment the deb-src entries if you need source packages
@@ -207,6 +225,7 @@ apt upgrade
 ```
 
 #### Additional base packages
+
 💬 Note the --no-install-recommends. These commands configure command-line languages and keyboards. As the original guide says: always enable the en_US.UTF-8 locale because some programs require it.
 
 ```bash
@@ -215,6 +234,7 @@ dpkg-reconfigure locales tzdata keyboard-configuration console-setup
 ```
 
 💬 Also, some packages we installed on the live USB must also be installed to the full install.
+
 ```bash
 apt install dosfstools zfs-initramfs zfsutils-linux zstd
 systemctl enable zfs.target
@@ -237,6 +257,7 @@ apt install --no-install-recommends ubuntu-server nano btop openssh-server ncurs
 ```
 
 ### Install and configure the bootloader
+
 ```bash
 zfs set org.zfsbootmenu:commandline="quiet" zroot/ROOT
 mkfs.vfat -F32 "$BOOT_DEVICE"
@@ -268,6 +289,7 @@ EOF
 ```
 
 ### First boot
+
 ```bash
 umount -n -R /mnt
 
@@ -276,7 +298,9 @@ reboot
 ```
 
 # ⭐ 💬 Post-first-boot and potential troubleshooting steps
+
 ### Create a non-root user and disable the root account
+
 It's wise from a security standpoint to disable the root user. From the root account, run the following commands:
 
 ```bash
@@ -291,25 +315,31 @@ PermitRootLogin no
 systemctl reload sshd
 reboot
 ```
+
 After rebooting, you can only log in via your non-root user, and can then elevate privileges.
 
+### Help! I have no internet after rebooting
 
-### Help! I have no internet after rebooting!
 One of the steps the ubuntu installer does is set up the internet for you, but we didn't use the ubuntu installer.
 
 You will need to sit at the server for a bit until we get internet working.
 Note, IP addresses or interface names may change in your case. This configuration was done via ethernet.
 
 #### 1. Assign a known IP address (temporary)
+
 ```bash
 ip addr add 192.168.1.50/24 dev enp2s0
 ip route add default via 192.168.1.1
 ```
+
 #### 2. Make changes permanent by configuring netplan
+
 ```bash
 nano /etc/netplan/01-netcfg.yaml
 ```
+
 Paste the following, changing your adapter name:
+
 ```yaml
 network:
   version: 2
@@ -323,6 +353,7 @@ network:
 ```
 
 Save, set permissions, apply changes:
+
 ```bash
 chmod 600 /etc/netplan/01-netcfg.yaml
 netplan generate

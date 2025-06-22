@@ -20,6 +20,7 @@ After our neat Ubuntu install, I want to remove some components from our system 
 - No Canonical ads
 
 ## Remove packages
+
 ```bash
 apt purge --auto-remove snapd
 apt purge --auto-remove unattended-upgrades
@@ -27,6 +28,7 @@ apt purge --auto-remove software-properties-common
 ```
 
 If not running in cloud:
+
 ```bash
 apt purge --auto-remove cloud-init
 ```
