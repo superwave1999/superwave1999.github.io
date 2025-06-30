@@ -9,7 +9,7 @@ categories: [documentation]
 
 Hello! This guide will guide you through an installation of Ubuntu Server 24.04.2 LTS.
 
-> I will update this guide if I find any further caveats. The main issue I can imagine popping up is Ubuntu assuming we are running the grub2 bootloader instead of rEFInd and zfsbootmenu.
+> I will update this guide if I find any further caveats. The main issue I can imagine popping up is Ubuntu assuming we are running the grub2 bootloader instead of rEFInd and zfsbootmenu. Edit: grub2 now blocked below.
 
 The target machine specs and the reasoning behind doing this (and for choosing ZFS over BTRFS) are detailed [here](/posts/setup-tour).
 
@@ -366,6 +366,21 @@ systemctl restart systemd-resolved
 ```
 
 Reboot to see if it's automatically configured.
+
+### Block grub from ever installing
+
+Ubuntu should be able to work with any bootloader. To avoid cases when a bad package or update may install grub, do the following:
+
+```bash
+sudo apt-mark hold grub-common grub-pc grub-pc-bin grub2-common
+sudo apt-mark hold grub-efi-amd64 grub-efi-amd64-bin grub-efi-amd64-signed
+
+sudo nano /etc/apt/preferences.d/nogrub
+# Insert the following and save
+Package: grub*
+Pin: release *
+Pin-Priority: -1
+```
 
 # Conclusion
 

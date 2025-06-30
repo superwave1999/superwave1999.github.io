@@ -134,7 +134,7 @@ To power these 4 drives, I searched online for the opinions of the community. Th
 
 - HBA's are still good and reliable.
 - HBA's are reliable, but you're buying older second-hand tech that may be unsupported by the manufacturer.
-- Use a PCI-E to SATA card of a dubious manuracturer (this guy did successfully for now).
+- Use a PCI-E to SATA card of a dubious manuracturer ([this guy](https://forum.level1techs.com/t/short-review-edging-asmedia-1166-pcie-gen3-x2-m-2-to-6-x-sata-hba-chipset-it-doesnt-suck/208743) did successfully for now).
 
 AFAIK, most HBA's are designed for x8 or x4 slots, not x1 slots. So given the possibilities and budget, I'm going for the last option.
 
@@ -239,5 +239,4 @@ Below is a diagram of my containers and the connections between them. No planned
 Happy with the result. A semi-professional setup at a good price. I'll be posting my journey using this new system to this page.
 
 ![New (without case)](/new-no-case.jpg)
-
-TODO: Add pic with case.
+![New (with case)](/new-with-case.jpg)
