@@ -238,5 +238,10 @@ Below is a diagram of my containers and the connections between them. No planned
 
 Happy with the result. A semi-professional setup at a good price. I'll be posting my journey using this new system to this page.
 
+Before case arrived:
+
 ![New (without case)](/new-no-case.jpg)
+
+Full build, final location:
+
 ![New (with case)](/new-with-case.jpg)
