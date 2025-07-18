@@ -1,14 +1,7 @@
 ---
-title: "ASM1064 checks, BIOS checks and system power optimization"
+title: "Tuning Linux Power Consumption with ASPM, C-States, and the ASM1064 SATA Controller"
 date: 2025-07-02
-tags:
-  - zfs
-  - data-recovery
-  - smartctl
-  - backups
-  - tar
-  - linux
-  - system-recovery
+tags: [linux, power-saving, zfs, pcie, aspm, c-states, asm1064, bios]
 categories: [documentation]
 media_subpath: /assets/posts/2025-07-02-power-optimization
 ---
@@ -185,6 +178,6 @@ PCIE power modes:
 0000:04:00.0         auto       04:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller SM981/PM981/PM983
 ```
 
-Wall power consumption: __54W__
+Wall power consumption (CPU transcoding, 100% usage): __52W__
 
 Better than my initial calculations, even if we can't drop below C3. During early-boot with no power management active and all HDDs spinning up, the consumption can go up to __105W__ momentarily.
