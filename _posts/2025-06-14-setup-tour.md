@@ -53,7 +53,7 @@ Given the age of the main system and the distrust of the TR-004, I convinced the
 
 I have a plan and I have a budget (of 300-350€). What could be so complicated?
 
-Avilability of the components.
+Availability of the components.
 
 Nonetheless, I managed to source all the components from a combination of Amazon, PCComponentes and CaseKing. Parts below.
 
@@ -65,11 +65,15 @@ Narrowing it down to ITX-only form-factor with support for multiple drives, I fo
 
 ### Fractal Design Node 304
 
+[Website](https://www.fractal-design.com/products/cases/node/node-304/black/)
+
 This is the cheaper case of the two, and perfect if you're building a NAS / Gaming / Rendering hybrid machine due to it's full-length GPU support. The main cons for NAS usage is the fact that the drives are inside the case, and every odd drive is flipped 180º sideways, also introducing twists in the SATA power and data cables.
 
 __94.48€__
 
 ### Jonsbo N2
+
+[Website](https://www.jonsbo.com/en/products/N2Black.html)
 
 It's clear to me that this was designed as a small-footprint storage-focused case from the start. It measures 22x22x22 and fits 5 drives with front access. The main limitations are SFX power supplies only, and no full-size GPU support.
 
@@ -81,8 +85,8 @@ Nothing flashy needed. Anything modern that performs on par or better than an i3
 
 Browsing online for motherboards, I noticed that this CPU comes soldered onto two available motherboards:
 
-- ASRock N100DC‑ITX (160€)
-- __Asus PRIME N100I‑D__ (113€, spoiler: my pick)
+- [ASRock N100DC‑ITX](https://www.asrock.com/mb/Intel/N100DC-ITX/) (160€)
+- [__Asus PRIME N100I‑D D4__](https://www.asus.com/motherboards-components/motherboards/prime/prime-n100i-d-d4/) (113€, spoiler: my pick)
 
 ### Power
 
@@ -171,7 +175,7 @@ The estimates are a combination of:
 
 Given that I wont exceed 100W, and probably sit around 20-30W most of the time, I'm in the search for a low-power power supply from a reputable brand that has the required SFX form factor for my case.
 
-Enter the __be quiet! SFX Power 3 300W__ at __63.99€__.
+Enter the [__be quiet! SFX Power 3 300W__](https://www.bequiet.com/en/powersupply/2310) at __63.99€__.
 
 ## Conclusion
 

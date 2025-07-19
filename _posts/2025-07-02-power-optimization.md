@@ -18,7 +18,7 @@ If you've read posts about firmware updates and flashing the ASM1064, spoiler, i
 
 ## ASM1064 checks
 
-Let's find our SATA controllerby running sudo lspci -vv and scrolling down to where it says 02:00.0 SATA controller [0106]: ASMedia Technology Inc. ASM1064 Serial ATA Controller [1b21:1064] (rev 02).
+Let's find our SATA controller by running `sudo lspci -vv` and scrolling down to where it says `02:00.0 SATA controller [0106]: ASMedia Technology Inc. ASM1064 Serial ATA Controller [1b21:1064] (rev 02)`.
 
 In the output we can see the following:
 
@@ -93,7 +93,7 @@ Great! Everything has ASPM enabled.
                 LnkCtl: ASPM L1 Enabled; RCB 64 bytes, Disabled- CommClk+
 ```
 
-Now that the system is prepared for power savings, let's check what powertop says (apt install powertop):
+Now that the system is prepared for power savings, let's check what powertop says (`apt install powertop`):
 
 ```text
            Pkg(HW)  |            Core(HW) |            CPU(OS) 0
@@ -118,7 +118,7 @@ So we will now apply further changes to our system, with the following in mind:
 
 - ZFS is sensitive to drive response times and is eager to offline disks.
 - These changes will increase latency if the device was asleep. Usually less than 1 second observed with my UPS.
-- Powertop --auto-tune on boot isn't always the best option.
+- `powertop --auto-tune` on boot isn't always the best option.
 - As always for your case YMMV!
 
 The basic approach:
@@ -135,7 +135,7 @@ The result is that we are reaching deeper C-states on everything but the package
 
 So, after applying the BIOS change (explicitly allowing down to C10) and setting up my script to run on boot, sadly, there isn't much of a safe improvement to my C-States.
 
-I YOLOd' it and used powertop --auto-tune, and although it was initially successful, ZFS started having issues a few minute later, so I'll ignore these suggestions since storage integrity is crucial.
+I YOLOd' it and used `powertop --auto-tune`, and although it was initially successful, ZFS started having issues a few minute later, so I'll ignore these suggestions since storage integrity is crucial.
 
 Final powertop idle stats:
 

@@ -73,7 +73,7 @@ lsblk
 
 In my case with the installer on USB and with a PCI-E M.2 SSD, the output looks like this:
 
-```bash
+```text
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 loop0    7:0    0   2.3G  1 loop /rofs
 sda      8:0    1  14.5G  0 disk
@@ -87,7 +87,7 @@ nvme0n1 259:0    0 512.1G  0 disk
 
 For a traditional SATA SSD, HDD, or SATA M.2, it will look like the following:
 
-```bash
+```text
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 loop0    7:0    0   2.3G  1 loop /rofs
 sda      8:0    1  14.5G  0 disk
@@ -159,7 +159,7 @@ udevadm trigger
 
 ### Install Ubuntu
 
-💬 This is the longest part of this process, it may appear stuck since there is no progress indicator. To clarify, we are installing Ubuntu to our ZFS'ed system drive mounted to /mnt in the previous step.
+💬 This is the longest part of this process, it may appear stuck since there is no progress indicator. To clarify, we are installing Ubuntu to our ZFS'ed system drive mounted to `/mnt` in the previous step.
 
 ```bash
 debootstrap noble /mnt
@@ -188,7 +188,7 @@ chroot /mnt /bin/bash
 
 #### Set hostname
 
-💬 Replace YOURHOSTNAME with something like server, homelab... whatever you want.
+💬 Replace `YOURHOSTNAME` with something like server, homelab... whatever you want.
 
 ```bash
 echo 'YOURHOSTNAME' > /etc/hostname
@@ -226,7 +226,7 @@ apt upgrade
 
 #### Additional base packages
 
-💬 Note the --no-install-recommends. These commands configure command-line languages and keyboards. As the original guide says: always enable the en_US.UTF-8 locale because some programs require it.
+💬 Note the `--no-install-recommends`. These commands configure command-line languages and keyboards. As the original guide says: always enable the `en_US.UTF-8` locale because some programs require it.
 
 ```bash
 apt install --no-install-recommends linux-generic locales keyboard-configuration console-setup
@@ -248,7 +248,7 @@ update-initramfs -c -k all
 
 Note! Here be dragons. YMMV.
 
-I want a very lean setup in my case, so I installed the ubuntu-server-minimal package, and maybe it's too aggressive. When I rebooted (don't do it yet) I didn't have internet configured, nor an SSH server to remote in. So, I'll install standard ubuntu-server package.
+I want a very lean setup in my case, so I installed the `ubuntu-server-minimal` package, and maybe it's too aggressive. When I rebooted (don't do it yet) I didn't have internet configured, nor an SSH server to remote in. So, I'll install standard ubuntu-server package.
 
 I'll post some troubleshooting steps I had to take at the end of this guide.
 

@@ -35,7 +35,7 @@ I saw that my pool was detected so I imported it:
 zfs import datapool
 ```
 
-Not only was it effortless, but the pool was automatically imported to the same folder (/storage) keeping all the settings, and even remembered that it had a zpool scrub midway on my original machine. For me, the job was done.
+Not only was it effortless, but the pool was automatically imported to the same folder (`/storage`) keeping all the settings, and even remembered that it had a `zpool scrub` midway on my original machine. For me, the job was done.
 
 ## Additional help for you
 
@@ -103,7 +103,7 @@ config:
 
 We can see that the third drive was offlined' in my original system and that it took 05:23 to resilver (restore parity) the pool. In the CKSUM column, it marks which drives have had data parity errors. We will now follow the recommended action by ZFS and check if the drive is OK before clearing the error.
 
-We will use the smartmontools package (apt install if unavailable) to test the drives. In my case, I ran a long test (overnight) with the following command. For a shorter test, feel free replace "long" with "short".
+We will use the `smartmontools` package (apt install if unavailable) to test the drives. In my case, I ran a long test (overnight) with the following command. For a shorter test, feel free replace "long" with "short".
 
 ```bash
 smartctl -t long /dev/disk/by-id/ata-WDC_WD80EFBX-68AZZN0_VRG0P6GK
